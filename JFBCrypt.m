@@ -825,20 +825,7 @@ signed char index_64[] = {
 							 withSalt: saltData
 							   rounds: rounds];
 	
-	[hashedPassword appendString: @"$2"];
-	if (minor >= 'a') {
-		[hashedPassword appendFormat: @"%C", minor];
-	}
-	
-	[hashedPassword appendString: @"$"];
-	if (rounds < 10) {
-		[hashedPassword appendString: @"0"];
-	}
-	
-	[hashedPassword appendFormat: @"%d", rounds];
-	[hashedPassword appendString: @"$"];
-	[hashedPassword appendString: [JFBCrypt encodeData: saltData
-											  ofLength: [saltData length]]];
+	[hashedPassword appendString: salt];
 	[hashedPassword appendString: [JFBCrypt encodeData: hashedData
 											  ofLength: 23]];
 	
